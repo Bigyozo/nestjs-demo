@@ -2,7 +2,11 @@ import { plainToInstance } from 'class-transformer';
 import { validate } from 'class-validator';
 
 import {
-    ArgumentMetadata, BadRequestException, Injectable, PipeTransform, Type
+  ArgumentMetadata,
+  BadRequestException,
+  Injectable,
+  PipeTransform,
+  Type,
 } from '@nestjs/common';
 
 @Injectable()
@@ -19,7 +23,7 @@ export class ValidataionPipe implements PipeTransform {
         throw new BadRequestException(errors[0].constraints[key]);
       }
     }
-    return undefined;
+    return value;
   }
 
   private toValidate(metatype: Type<any>): boolean {

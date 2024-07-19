@@ -3,7 +3,6 @@ import { ConfigService, ConfigType } from '@nestjs/config';
 import { TypeOrmModuleOptions, TypeOrmOptionsFactory } from '@nestjs/typeorm';
 
 import database from '../config/database';
-import { User } from '../entity/User';
 
 @Injectable()
 export class TypeOrmConfigService implements TypeOrmOptionsFactory {
@@ -11,7 +10,7 @@ export class TypeOrmConfigService implements TypeOrmOptionsFactory {
     private configService: ConfigService,
     @Inject(database.KEY)
     private dbconfig: ConfigType<typeof database>,
-  ) {}
+  ) { }
 
   createTypeOrmOptions(
     connectionName?: string,

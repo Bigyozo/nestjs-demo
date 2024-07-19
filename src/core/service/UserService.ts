@@ -1,8 +1,7 @@
 import * as bcrypt from 'bcrypt';
 import { Repository } from 'typeorm';
 
-import { HttpException, Injectable } from '@nestjs/common';
-import { ConfigService } from '@nestjs/config';
+import { HttpException, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 
 import { UserCreateRequest } from '../dto/UserCreateRequest';
@@ -34,6 +33,7 @@ export class UserService {
   }
 
   async findByUsername(username: string) {
-    return this.userPepository.findOneBy({ username });
+    const user: User = await this.userPepository.findOneBy({ username });
+    return user;
   }
 }
